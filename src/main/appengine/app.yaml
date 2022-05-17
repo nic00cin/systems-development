@@ -13,7 +13,6 @@
 #  limitations under the License.
 # [START gae_flex_quickstart_yaml]
 runtime: java18
-env: flex
 
 handlers:
 - url: /.*
