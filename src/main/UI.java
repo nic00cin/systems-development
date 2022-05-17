@@ -1,4 +1,5 @@
 package main;
+import java.applet.*;
 import java.awt.Color;
 
 import javax.swing.ImageIcon;
@@ -7,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 
-	public class UI {
+	public class UI extends Applet{
 		static JFrame window;
 		public static JPanel bgpanel[] = new JPanel[3];
 		public static JLabel bgLabel[] = new JLabel[3];
