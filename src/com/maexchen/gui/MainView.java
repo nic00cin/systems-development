@@ -1,4 +1,4 @@
-package src;
+package com.maexchen.gui;
 
 import java.awt.Color;
 
@@ -13,7 +13,6 @@ public class MainView {
 	public static JLabel bgLabel[] = new JLabel[3];
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		createMainField();
 		createBackground();
 		window.setVisible(true);
