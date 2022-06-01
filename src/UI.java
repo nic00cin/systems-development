@@ -29,7 +29,7 @@ import javax.swing.JPanel;
 		public static void createBackground() {
 			bgpanel[1] = new JPanel();
 			bgpanel[1].setBounds(50,50,700,350);
-			bgpanel[1].setBackground(Color.cyan);
+		
 			
 			bgLabel[1] = new JLabel();
 			bgLabel[1].setBounds(50,50,700,350);
