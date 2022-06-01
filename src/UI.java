@@ -1,4 +1,7 @@
+package Maexchen;
+
 import java.awt.Color;
+import java.awt.Image;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -7,18 +10,18 @@ import javax.swing.JPanel;
 
 
 	public class UI {
-		static JFrame window;
-		public static JPanel bgpanel[] = new JPanel[3];
-		public static JLabel bgLabel[] = new JLabel[3];
+		public JFrame window;
+		public JPanel bgpanel[] = new JPanel[3];
+		public JLabel bgLabel[] = new JLabel[3];
 		
-		public static void main(String[] args) {
+		public UI(){
 			// TODO Auto-generated method stub
 			createMainField();
 			createBackground();
 			window.setVisible(true);
 		}
 		
-		public static void createMainField() {
+		public void createMainField() {
 			window = new JFrame();
 			window.setSize(800,600);
 			window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -26,15 +29,16 @@ import javax.swing.JPanel;
 			window.setTitle("Mäxchen");
 		}
 		
-		public static void createBackground() {
+		public void createBackground() {
 			bgpanel[1] = new JPanel();
 			bgpanel[1].setBounds(50,50,700,350);
-		
+	
 			
 			bgLabel[1] = new JLabel();
 			bgLabel[1].setBounds(50,50,700,350);
 			
-			ImageIcon bgIcon = new ImageIcon("Wuerfel.png");
+			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("Wuerfel.jpeg"));
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(800,450,Image.SCALE_DEFAULT)); 
 			bgLabel[1].setIcon(bgIcon);
 			
 			bgpanel[1].add(bgLabel[1]);
@@ -43,5 +47,3 @@ import javax.swing.JPanel;
 		}
 
 	}
-
-
