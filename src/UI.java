@@ -63,12 +63,12 @@ import javax.swing.JTextField;
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			try{
-			input_players = Integer.parseInt(n_players.getText());
-			System.out.println(input_players);
+				input_players = Integer.parseInt(n_players.getText());
+				System.out.println(input_players);
 			}
-	        catch (NumberFormatException ex){
-	        	 System.out.println("No input or no integer!");
-	        }
+	        	catch (NumberFormatException ex){
+	        		System.out.println("No input or no integer!");
+	        	}
 		}
 
 	}
