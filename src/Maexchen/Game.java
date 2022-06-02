@@ -1,11 +1,10 @@
+package Maexchen;
 
-public class Test2 {
+public class Game {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
-		System.out.println("So ein Gott dieser API");
-
+		UI user_interface = new UI();
 	}
 
 }
