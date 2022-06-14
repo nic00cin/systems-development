@@ -19,7 +19,8 @@ import javax.swing.JTextField;
 		public JPanel bgpanel[] = new JPanel[3];
 		public JLabel bgLabel[] = new JLabel[3];
 		public JTextField n_players;
-		public int input_players;
+		public static int input_players;
+		public PlayerInfoUI playerinfo_ui;
 		
 		public UI(){
 			// TODO Auto-generated method stub
@@ -65,7 +66,9 @@ import javax.swing.JTextField;
 			// TODO Auto-generated method stub
 			try{
 			input_players = Integer.parseInt(n_players.getText());
-			System.out.println(input_players);
+			window.setVisible(false);
+			window.dispose();
+			PlayerInfoUI playerinfo_ui = new PlayerInfoUI();
 			}
 	        catch (NumberFormatException ex){
 	        //	 System.out.println("No input or no integer!");
