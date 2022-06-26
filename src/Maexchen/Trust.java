@@ -49,9 +49,8 @@ public class Trust implements ActionListener, WindowListener {
 	}
 
 	/**
-	 * This method sucks
+	 * This method creates the background of the trust user interface
 	 */
-
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
 		bgpanel[1].setBounds(50, 50, 300, 250);
