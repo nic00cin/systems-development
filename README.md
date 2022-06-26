@@ -18,7 +18,7 @@ It is robustly build, but still remains flexible due to its MVC Architecture.
 
 ## Documentation
 
-[Documentation](https://github.com/nic00cin/systems-development/blob/master/doc/index.html)
+[Documentation](doc/index.html)
 
 
 ## Authors
