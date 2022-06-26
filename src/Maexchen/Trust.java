@@ -18,56 +18,56 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 public class Trust implements ActionListener, WindowListener {
 	private enum Actions {
-	    TRUST,
-	    LIE
-	  }
+		TRUST, LIE
+	}
+
 	public JFrame window;
 	public JPanel bgpanel[] = new JPanel[5];
 	public JLabel bgLabel[] = new JLabel[5];
 	public JTextField number_called;
 	public int input_number;
-	
-	
-		
+
 	public Trust() {
 		createFirstMainField();
 		createBackground();
 		window.setVisible(true);
 	}
-	
+
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(400,85);
+		window.setSize(400, 85);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.getContentPane().setBackground(Color.white);
 		window.addWindowListener(this);
-		if(PlayerInfoUI.player_order+1 >= UI.input_players) {
+		if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
 			window.setTitle(PlayerInfoUI.Players[0].getName());
-		}else {
-			window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order+1].getName());
+		} else {
+			window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].getName());
 		}
 	}
-	
+
+	/**
+	 * This method sucks
+	 */
+
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
-		bgpanel[1].setBounds(50,50,300,250);
+		bgpanel[1].setBounds(50, 50, 300, 250);
 
-	
-		bgLabel[1] = new JLabel(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " rolled: " + PlayerInfoUI.Players[PlayerInfoUI.player_order].getCalled());
-		bgLabel[1].setBounds(50,50,300,250);
-		
-		
+		bgLabel[1] = new JLabel(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " rolled: "
+				+ PlayerInfoUI.Players[PlayerInfoUI.player_order].getCalled());
+		bgLabel[1].setBounds(50, 50, 300, 250);
+
 		JButton trust = new JButton("Trust!");
 		trust.setActionCommand(Actions.TRUST.name());
 		trust.addActionListener(this);
-		
+
 		JButton lie = new JButton("Lie!");
 		lie.setActionCommand(Actions.LIE.name());
 		lie.addActionListener(this);
-		
+
 		bgpanel[1].add(bgLabel[1]);
 		bgpanel[1].add(trust);
 		bgpanel[1].add(lie);
@@ -76,36 +76,51 @@ public class Trust implements ActionListener, WindowListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		
 		if (e.getActionCommand() == Actions.TRUST.name()) {
-			if(PlayerInfoUI.player_order+1 >= UI.input_players) {
+			if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
 				PlayerInfoUI.player_order = 0;
 				window.dispose();
+
 				DiceUI dice_ui = new DiceUI();
-			}else {
+			} else {
 				PlayerInfoUI.player_order += 1;
 				window.dispose();
+
 				DiceUI dice_ui = new DiceUI();
-			}  
+			}
 		} else if (e.getActionCommand() == Actions.LIE.name()) {
 			PlayerInfoUI.first_round = true;
-			if(CheckerMaexchen.check() == true) {
-				if(PlayerInfoUI.player_order+1 >= UI.input_players) {
+
+			if (CheckerMaexchen.check() == true) {
+				if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
 					PlayerInfoUI.Players[0].decreasepoints();
-					PlayerInfoUI.player_order = 0;
+
 					JFrame jFrame = new JFrame();
-					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " said the truth! So you loose a point!");
-				}else {	
-					PlayerInfoUI.Players[PlayerInfoUI.player_order+1].decreasepoints();
-					PlayerInfoUI.player_order += 1; 
+					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName()
+							+ " said the truth! So you loose a point!");
+				} else {
+					PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].decreasepoints();
+
 					JFrame jFrame = new JFrame();
-					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " said the truth! So you loose a point!");
+					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName()
+							+ " said the truth! So you loose a point!");
 				}
-			}else {
+			} else {
 				PlayerInfoUI.Players[PlayerInfoUI.player_order].decreasepoints();
+
 				JFrame jFrame = new JFrame();
-				JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " lied to you! So " + PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " looses a point!");
+				JOptionPane.showMessageDialog(jFrame,
+						PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " lied to you! So "
+								+ PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " looses a point!");
+
+				if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
+					PlayerInfoUI.player_order = 0;
+				} else {
+					PlayerInfoUI.player_order += 1;
+				}
 			}
+
 			window.dispose();
 			DiceUI dice_ui = new DiceUI();
 		}
@@ -114,14 +129,15 @@ public class Trust implements ActionListener, WindowListener {
 	@Override
 	public void windowOpened(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit", JOptionPane.YES_NO_OPTION);
-		if( antwort == JOptionPane.YES_OPTION) {
+		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit",
+				JOptionPane.YES_NO_OPTION);
+		if (antwort == JOptionPane.YES_OPTION) {
 			window.dispose();
 			PointsTable points_tb = new PointsTable();
 		}
@@ -130,30 +146,30 @@ public class Trust implements ActionListener, WindowListener {
 	@Override
 	public void windowClosed(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
