@@ -18,7 +18,7 @@ It is robustly build, but still remains flexible due to its MVC Architecture.
 
 ## Documentation
 
-[Documentation](/doc/index.html)
+[Documentation]<a href="Maexchen/package-summary.html">Maexchen/package-summary.html</a>
 
 
 ## Authors
