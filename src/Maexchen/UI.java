@@ -29,6 +29,9 @@ import javax.swing.JTextField;
 			window.setVisible(true);
 		}
 		
+		/**
+		 *  Create Main Field with title
+		 */
 		public void createMainField() {
 			window = new JFrame();
 			window.setSize(800,530);
@@ -65,10 +68,15 @@ import javax.swing.JTextField;
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub
 			try{
-			input_players = Integer.parseInt(n_players.getText());
-			window.setVisible(false);
-			window.dispose();
-			PlayerInfoUI playerinfo_ui = new PlayerInfoUI();
+				input_players = Integer.parseInt(n_players.getText());
+				if(input_players > 1) {
+					window.setVisible(false);
+					window.dispose();
+					PlayerInfoUI playerinfo_ui = new PlayerInfoUI();
+				}else {
+					JFrame jFrame = new JFrame();
+					JOptionPane.showMessageDialog(jFrame, "Go out and get you a friend to play with haha!");
+				}
 			}
 	        catch (NumberFormatException ex){
 	        //	 System.out.println("No input or no integer!");

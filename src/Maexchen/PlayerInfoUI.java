@@ -25,6 +25,10 @@ public class PlayerInfoUI implements ActionListener {
 	public JTextField age_players;
 	public int input_age;
 	public static Player Players[] = new Player[UI.input_players];
+	public static int player_order;
+	public static boolean done = false;
+	public static int highest_number;
+	public static boolean first_round = true;
 	
 	public PlayerInfoUI(){
 		// TODO Auto-generated method stub
