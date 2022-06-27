@@ -40,6 +40,9 @@ import javax.swing.JTextField;
 			window.setTitle("Mäxchen");
 		}
 		
+		/**
+		 *  Create start window + number of players can be added + button start game
+		 */
 		public void createBackground() {
 			bgpanel[1] = new JPanel();
 			bgpanel[1].setBounds(50,50,700,350);
@@ -64,6 +67,9 @@ import javax.swing.JTextField;
 			
 		}
 
+		/**
+		 * Checks if the players input makes sense
+		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// TODO Auto-generated method stub

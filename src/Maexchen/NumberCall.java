@@ -31,6 +31,9 @@ public class NumberCall implements ActionListener, WindowListener {
 		window.setVisible(true);
 	}
 	
+	/**
+	 * shows the rolled number
+	 */
 	public void createFirstMainField() {
 		window = new JFrame();
 		window.setSize(400,85);
@@ -40,6 +43,9 @@ public class NumberCall implements ActionListener, WindowListener {
 		window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName()+" - Your Rolled Number?");
 	}
 	
+	/**
+	 * lets you input the number you want to tell
+	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
 		bgpanel[1].setBounds(50,50,300,250);
@@ -59,6 +65,9 @@ public class NumberCall implements ActionListener, WindowListener {
 		
 	}
 	
+	/**
+	 * checks if the input makes sense
+	 */
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 			try {
@@ -99,6 +108,9 @@ public class NumberCall implements ActionListener, WindowListener {
 		
 	}
 
+	/**
+	 * This method asks the user if he wants to exits the game and if yes shows the Points table
+	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub

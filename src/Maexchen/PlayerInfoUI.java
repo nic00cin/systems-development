@@ -37,6 +37,9 @@ public class PlayerInfoUI implements ActionListener {
 		window.setVisible(true);
 	}
 	
+	/**
+	 * creates window player information
+	 */
 	public void createMainField() {
 		window = new JFrame();
 		window.setSize(400,100);
@@ -45,6 +48,9 @@ public class PlayerInfoUI implements ActionListener {
 		window.setTitle("Player Information");
 	}
 	
+	/**
+	 * creates buttons/text fields for the player info
+	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
 		bgpanel[1].setBounds(50,50,400,100);
@@ -67,7 +73,11 @@ public class PlayerInfoUI implements ActionListener {
 		window.add(bgpanel[1]);
 		
 	}
+	
 
+	/**
+	 * adds player
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

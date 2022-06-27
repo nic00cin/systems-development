@@ -41,6 +41,7 @@ public class DiceUI implements ActionListener, WindowListener {
 		window.setVisible(true);
 	}
 	
+
 	public void createFirstMainField() {
 		window = new JFrame();
 		window.setSize(200,150);
@@ -50,6 +51,9 @@ public class DiceUI implements ActionListener, WindowListener {
 		window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName());
 	}
 	
+	/**
+	 * show the numbers of your dice throw
+	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
 		bgpanel[1].setBounds(50,50,200,150);
@@ -67,6 +71,9 @@ public class DiceUI implements ActionListener, WindowListener {
 		
 	}
 	
+	/**
+	 * determines who the youngest player is and lets him start
+	 */
 	public void setYoungestPlayer() {
 		if(PlayerInfoUI.done == false) {
 			youngest = PlayerInfoUI.Players[0].getAge();
@@ -81,6 +88,10 @@ public class DiceUI implements ActionListener, WindowListener {
 		}
 	}
 	
+	/**
+	 * shows the picture of the first dice with the thrown number
+	 * @param n_dice - dice number
+	 */
 	public void addpicture1(int n_dice) {
 		bgLabel[1] = new JLabel();
 		bgLabel[1].setBounds(50,50,200,150);
@@ -119,6 +130,10 @@ public class DiceUI implements ActionListener, WindowListener {
 		window.add(bgpanel[1]);
 	}
 	
+	/**
+	 * shows the picture of the second dice with the thrown number + continue button
+	 * @param n_dice - dice number
+	 */
 	public void addpicture2(int n_dice) {
 		bgLabel[2] = new JLabel();
 		bgLabel[2].setBounds(50,50,200,150);
@@ -162,6 +177,9 @@ public class DiceUI implements ActionListener, WindowListener {
 		window.setVisible(true);
 	}
 	
+	/**
+	 * determines two random numbers and puts them together (higher number first)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
@@ -198,7 +216,10 @@ public class DiceUI implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 		
 	}
-
+	
+	/**
+	 * This method asks the user if he wants to exits the game and if yes shows the Points table
+	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub

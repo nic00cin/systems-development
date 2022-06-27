@@ -31,6 +31,9 @@ public class PointsTable {
 		window.setVisible(true);
 	}
 	
+	/**
+	 * shows the name of the winner in the title
+	 */
 	public void createFirstMainField() {
 		window = new JFrame();
 		window.setSize(200,150);
@@ -39,6 +42,9 @@ public class PointsTable {
 		window.setTitle("The Winner is " +PlayerInfoUI.Players[getWinner()].getName());
 	}
 	
+	/**
+	 * shows all players and their points in the user interface
+	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
 		bgpanel[1].setBounds(50,50,200,150);
@@ -54,6 +60,10 @@ public class PointsTable {
 		
 	}
 	
+	/**
+	 * Checks which player has the most points
+	 * @return the winner
+	 */
 	public static int getWinner() {
 		
 		for(int i = 0; i < UI.input_players ; i++) {

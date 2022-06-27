@@ -31,6 +31,10 @@ public class CheckerMaexchen {
 		Values[20] = 21;
 	}
 	
+	/**
+	 * checks what the player called is the same as what the player rolled
+	 * @return true or false
+	 */
 	public static boolean check() {
 		if(PlayerInfoUI.Players[PlayerInfoUI.player_order].getCalled() == PlayerInfoUI.Players[PlayerInfoUI.player_order].getRolled()) {
 			return true;
@@ -39,6 +43,11 @@ public class CheckerMaexchen {
 		}
 	}
 	
+	/**
+	 * pairs the diced number with one of the values above
+	 * @param number
+	 * @return the value of the diced number
+	 */
 	public static int getValueIndex(int number) {
 		for(int i = 0; i<21; i++) {
 			if(number == Values[i]) {
@@ -48,6 +57,11 @@ public class CheckerMaexchen {
 		return index;
 	}
 	
+	/**
+	 * checks if the players number is higher than the number of the player before
+	 * @param number
+	 * @return 
+	 */
 	public static boolean checkhigher(int number) {
 		if(getValueIndex(number) > getValueIndex(PlayerInfoUI.highest_number)) {
 			return true;
@@ -56,6 +70,11 @@ public class CheckerMaexchen {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param number
+	 * @return
+	 */
 	public static boolean NumberisIn(int number) {
 		isIn = false;
 		for(int i = 0; i<21; i++) {

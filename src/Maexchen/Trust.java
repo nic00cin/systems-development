@@ -49,7 +49,7 @@ public class Trust implements ActionListener, WindowListener {
 	}
 
 	/**
-	 * This method creates the background of the trust user interface
+	 * This method creates the trust user interface
 	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
@@ -73,6 +73,10 @@ public class Trust implements ActionListener, WindowListener {
 		window.add(bgpanel[1]);
 	}
 
+	/**
+	 * this method checks if the previous user lied if trust is chosen
+	 * It also adds/subtracts points depending on the situation
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		
@@ -130,7 +134,9 @@ public class Trust implements ActionListener, WindowListener {
 		// TODO Auto-generated method stub
 
 	}
-
+	/**
+	 * This method asks the user if he wants to exits the game and if yes shows the Points table
+	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
