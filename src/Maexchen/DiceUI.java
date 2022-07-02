@@ -1,6 +1,8 @@
 package Maexchen;
 
-import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,60 +18,96 @@ import javax.swing.JPanel;
 
 public class DiceUI implements ActionListener, WindowListener {
 	public JFrame window;
-	public JPanel bgpanel[] = new JPanel[5];
-	public JLabel bgLabel[] = new JLabel[5];
+	public JPanel titlePanel;
+	public JPanel imagePanel;
+	public JPanel inputPanel;
+	public JLabel titleLabel;
+	public JLabel firstDiceLabel;
+	public JLabel secondDiceLabel;
 	public boolean showed = false;
 	public int youngest;
 	public int youngest_player;
 	public int number1;
 	public int number2;
 	public int number;
-	
-	public DiceUI(){
-		setYoungestPlayer();
-		createFirstMainField();
-		createBackground();
-	}
-	
 
-	public void createFirstMainField() {
+	public DiceUI() {
+		setYoungestPlayer();
+		createTitlePanel();
+		createImagePanel();
+		createInputPanel();
+		createMainField();
+	}
+
+	/**
+	 * Create Main Field with title
+	 */
+	public void createMainField() {
 		window = new JFrame();
-		window.setSize(500,500);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		window.getContentPane().setBackground(Color.white);
+		window.setSize(500, 500);
+		window.setLayout(new BorderLayout());
+		window.add(titlePanel, BorderLayout.NORTH);
+		window.add(imagePanel, BorderLayout.CENTER);
+		window.add(inputPanel, BorderLayout.CENTER);
 		window.addWindowListener(this);
-		window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName());
+		window.setTitle("Mäxchen");
 		window.setVisible(true);
+	}
+
+	/**
+	 * Create panel for the page title and game manual
+	 */
+	public void createTitlePanel() {
+		titlePanel = new JPanel();
+		titlePanel.setLayout(new BorderLayout());
+		titleLabel = new JLabel(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName());
+
+		titlePanel.add(titleLabel, BorderLayout.CENTER);
 	}
 	
 	/**
-	 * show the numbers of your dice throw
+	 * Create panel for the player label and the show numbers button
 	 */
-	public void createBackground() {
-		bgpanel[1] = new JPanel();
-		bgpanel[1].setBounds(50,50,200,200);
+	public void createInputPanel() {
+		inputPanel = new JPanel();
+		inputPanel.setBounds(50, 50, 200, 200);
 
-		
-		bgLabel[1] = new JLabel();
-		bgLabel[1].setBounds(50,50,200,200);
-		
 		JButton button = new JButton("Show numbers!");
 		button.addActionListener(this);
-		
-		bgpanel[1].add(bgLabel[1]);
-		bgpanel[1].add(button);
-		window.add(bgpanel[1]);
-		
+
+		inputPanel.add(button);
 	}
 	
+	/**
+	 * Create panel for main image view
+	 */
+	public void createImagePanel() {
+		imagePanel = new JPanel() {
+			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("becher.jpg"));
+			Image bgImage = bgIcon.getImage();
+
+			@Override
+			protected void paintComponent(Graphics g) {
+				super.paintComponent(g);
+				g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
+			}
+
+			@Override
+			public Dimension getPreferredSize() {
+				return new Dimension(390, 390);
+			}
+		};
+	}
+
 	/**
 	 * determines who the youngest player is and lets him start
 	 */
 	public void setYoungestPlayer() {
-		if(PlayerInfoUI.done == false) {
+		if (PlayerInfoUI.done == false) {
 			youngest = PlayerInfoUI.Players[0].getAge();
-			for(int i = 0;i < UI.input_players; i++) {
-				if(youngest > PlayerInfoUI.Players[i].getAge()) {
+			for (int i = 0; i < UI.input_players; i++) {
+				if (youngest > PlayerInfoUI.Players[i].getAge()) {
 					youngest = PlayerInfoUI.Players[i].getAge();
 					youngest_player = i;
 				}
@@ -78,144 +116,148 @@ public class DiceUI implements ActionListener, WindowListener {
 			PlayerInfoUI.player_order = youngest_player;
 		}
 	}
-	
+
 	/**
 	 * shows the picture of the first dice with the thrown number
+	 * 
 	 * @param n_dice - dice number
 	 */
 	public void addpicture1(int n_dice) {
-		bgLabel[1] = new JLabel();
-		bgLabel[1].setBounds(50,50,200,200);
-		if(n_dice == 1) {
+		firstDiceLabel = new JLabel();
+		if (n_dice == 1) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("eins.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
-		}else if(n_dice == 2){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
+		} else if (n_dice == 2) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("zwei.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
-		}else if(n_dice == 3){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
+		} else if (n_dice == 3) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("drei.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
-		}else if(n_dice == 4){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
+		} else if (n_dice == 4) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("vier.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
-		}else if(n_dice == 5){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
+		} else if (n_dice == 5) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("fuenf.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
-		}else if(n_dice == 6){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
+		} else if (n_dice == 6) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("sechs.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[1].setIcon(bgIcon);
-			bgLabel[1].setLocation(100, 100);
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			firstDiceLabel.setIcon(bgIcon);
+			firstDiceLabel.setLocation(100, 100);
 		}
-		bgpanel[1].add(bgLabel[1]);
-		window.add(bgpanel[1]);
 	}
-	
+
 	/**
 	 * shows the picture of the second dice with the thrown number + continue button
+	 * 
 	 * @param n_dice - dice number
 	 */
 	public void addpicture2(int n_dice) {
-		bgLabel[2] = new JLabel();
-		bgLabel[2].setBounds(50,50,200,200);
-		if(n_dice == 1) {
+		secondDiceLabel = new JLabel();
+		if (n_dice == 1) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("eins.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
-		}else if(n_dice == 2){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
+		} else if (n_dice == 2) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("zwei.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
-		}else if(n_dice == 3){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
+		} else if (n_dice == 3) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("drei.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
-		}else if(n_dice == 4){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
+		} else if (n_dice == 4) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("vier.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
-		}else if(n_dice == 5){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
+		} else if (n_dice == 5) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("fuenf.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
-		}else if(n_dice == 6){
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
+		} else if (n_dice == 6) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("sechs.png"));
-			bgIcon.setImage(bgIcon.getImage());
-			bgLabel[2].setIcon(bgIcon);
-			bgLabel[2].setLocation(300, 100);
+			bgIcon.setImage(bgIcon.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
+			secondDiceLabel.setIcon(bgIcon);
+			secondDiceLabel.setLocation(300, 100);
 		}
-		JButton button = new JButton("Continue");
-		button.addActionListener(this);;
-		bgpanel[1].add(bgLabel[2]);
-		bgpanel[1].add(button);
-		window.add(bgpanel[1]);
-		window.setSize(500,500);
-		window.setVisible(true);
 	}
-	
+
 	/**
 	 * determines two random numbers and puts them together (higher number first)
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-			if(showed == false){	
-				number1 = Random.getRandomNumber();
-				number2 = Random.getRandomNumber();
-				window.dispose();
-				bgpanel[1].removeAll();
-				if(number1 > number2) {
-					number = Integer.parseInt(Integer.toString(number1) + Integer.toString(number2));
-					addpicture1(number1);
-					addpicture2(number2);
-				}else {
-					number = Integer.parseInt(Integer.toString(number2) + Integer.toString(number1));
-					addpicture1(number2);
-					addpicture2(number1);
-				}
-				PlayerInfoUI.Players[PlayerInfoUI.player_order].setRolled(number);
-				showed = true;
-			}else {
-				window.dispose();
-				showed = false;
-				if(PlayerInfoUI.highest_number != 21) {
-					NumberCall n_call = new NumberCall();
-				}else {
-					PlayerInfoUI.Players[PlayerInfoUI.player_order].setCalled(PlayerInfoUI.highest_number);
-					Trust trust_ui = new Trust();
-				}
+		if (showed == false) {
+			number1 = Random.getRandomNumber();
+			number2 = Random.getRandomNumber();
+			window.dispose();
+			titlePanel.removeAll();
+			imagePanel.removeAll();
+			inputPanel.removeAll();
+			if (number1 > number2) {
+				number = Integer.parseInt(Integer.toString(number1) + Integer.toString(number2));
+				addpicture1(number1);
+				addpicture2(number2);
+			} else {
+				number = Integer.parseInt(Integer.toString(number2) + Integer.toString(number1));
+				addpicture1(number2);
+				addpicture2(number1);
 			}
+			
+			JButton button = new JButton("Continue");
+			button.addActionListener(this);
+			imagePanel.add(firstDiceLabel);
+			imagePanel.add(secondDiceLabel);
+			inputPanel.add(button);
+			
+			window.add(imagePanel, BorderLayout.CENTER);
+			window.add(inputPanel, BorderLayout.SOUTH);
+			window.setSize(500, 500);
+			window.setVisible(true);
+			
+			PlayerInfoUI.Players[PlayerInfoUI.player_order].setRolled(number);
+			showed = true;
+		} else {
+			window.dispose();
+			showed = false;
+			if (PlayerInfoUI.highest_number != 21) {
+				NumberCall n_call = new NumberCall();
+			} else {
+				PlayerInfoUI.Players[PlayerInfoUI.player_order].setCalled(PlayerInfoUI.highest_number);
+				Trust trust_ui = new Trust();
+			}
+		}
 	}
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	/**
-	 * This method asks the user if he wants to exits the game and if yes shows the Points table
+	 * This method asks the user if he wants to exits the game and if yes shows the
+	 * Points table
 	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
-		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit", JOptionPane.YES_NO_OPTION);
-		if( antwort == JOptionPane.YES_OPTION) {
+		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit",
+				JOptionPane.YES_NO_OPTION);
+		if (antwort == JOptionPane.YES_OPTION) {
 			window.dispose();
 			PointsTable points_tb = new PointsTable();
 		}
@@ -223,32 +265,26 @@ public class DiceUI implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
-	} 
 
+	}
 }
