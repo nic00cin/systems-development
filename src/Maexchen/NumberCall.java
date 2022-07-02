@@ -16,8 +16,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
-
 public class NumberCall implements ActionListener, WindowListener {
 	public JFrame window;
 	public JPanel bgpanel[] = new JPanel[5];
@@ -69,7 +67,6 @@ public class NumberCall implements ActionListener, WindowListener {
 	 * checks if the input makes sense
 	 */
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
 			try {
 				input_number = Integer.parseInt(number_called.getText());	
 				if(CheckerMaexchen.NumberisIn(input_number)== true) {
@@ -104,7 +101,6 @@ public class NumberCall implements ActionListener, WindowListener {
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -113,7 +109,6 @@ public class NumberCall implements ActionListener, WindowListener {
 	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
 		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit", JOptionPane.YES_NO_OPTION);
 		if( antwort == JOptionPane.YES_OPTION) {
 			window.dispose();
@@ -123,31 +118,26 @@ public class NumberCall implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
-		
+
 	}
 }

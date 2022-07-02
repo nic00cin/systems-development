@@ -6,10 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -17,7 +13,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class DiceUI implements ActionListener, WindowListener {
 	public JFrame window;
@@ -29,9 +24,6 @@ public class DiceUI implements ActionListener, WindowListener {
 	public int number1;
 	public int number2;
 	public int number;
-	
-	
-
 	
 	public DiceUI(){
 		setYoungestPlayer();
