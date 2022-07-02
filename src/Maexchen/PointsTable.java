@@ -36,7 +36,7 @@ public class PointsTable {
 	 */
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(200,150);
+		window.setSize(500,500);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().setBackground(Color.white);
 		window.setTitle("The Winner is " +PlayerInfoUI.Players[getWinner()].getName());

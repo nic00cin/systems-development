@@ -36,7 +36,7 @@ public class NumberCall implements ActionListener, WindowListener {
 	 */
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(400,85);
+		window.setSize(500,500);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.getContentPane().setBackground(Color.white);
 		window.addWindowListener(this);
@@ -86,7 +86,7 @@ public class NumberCall implements ActionListener, WindowListener {
 							window.dispose();
 							Trust trust = new Trust();
 						}else {
-							PlayerInfoUI.Players[PlayerInfoUI.player_order].decreasepoints();
+							PlayerInfoUI.Players[PlayerInfoUI.player_order].decreasePoints();
 							JFrame jFrame = new JFrame();
 				            JOptionPane.showMessageDialog(jFrame, "You lost a point, because you entered a lower number as before. Try again.");
 						}

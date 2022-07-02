@@ -36,31 +36,34 @@ public class Player {
 	}
 	
 	/**
-	 * @return the dice number
+	 * @return the rolled number
 	 */
 	public int getRolled() {
 		return this.rolled_n;
 	}
 	
 	/**
-	 * @return what the player called he diced
+	 * @return what the player called he rolled
 	 */
 	public int getCalled() {
 		return this.called_n;
 	}
 	
+	/**
+	 * set the actual rolled number
+	 * @param rolled
+	 */
 	public void setRolled(int rolled) {
 		this.rolled_n = rolled;
 	}
 	
+	/**
+	 * set the called number
+	 * @param called
+	 */
 	public void setCalled(int called) {
 		this.called_n = called;
 	}
-	
-	public void decreasepoints(){
-		this.points -= 1;
-	}
-	
 	
 	/**
 	 * @return points of the player

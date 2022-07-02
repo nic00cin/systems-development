@@ -37,7 +37,7 @@ public class Trust implements ActionListener, WindowListener {
 
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(400, 85);
+		window.setSize(500, 500);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.getContentPane().setBackground(Color.white);
 		window.addWindowListener(this);
@@ -97,20 +97,20 @@ public class Trust implements ActionListener, WindowListener {
 
 			if (CheckerMaexchen.check() == true) {
 				if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
-					PlayerInfoUI.Players[0].decreasepoints();
+					PlayerInfoUI.Players[0].decreasePoints();
 
 					JFrame jFrame = new JFrame();
 					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName()
 							+ " said the truth! So you loose a point!");
 				} else {
-					PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].decreasepoints();
+					PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].decreasePoints();
 
 					JFrame jFrame = new JFrame();
 					JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName()
 							+ " said the truth! So you loose a point!");
 				}
 			} else {
-				PlayerInfoUI.Players[PlayerInfoUI.player_order].decreasepoints();
+				PlayerInfoUI.Players[PlayerInfoUI.player_order].decreasePoints();
 
 				JFrame jFrame = new JFrame();
 				JOptionPane.showMessageDialog(jFrame,

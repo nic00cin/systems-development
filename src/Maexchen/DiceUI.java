@@ -34,21 +34,20 @@ public class DiceUI implements ActionListener, WindowListener {
 
 	
 	public DiceUI(){
-		// TODO Auto-generated method stub
 		setYoungestPlayer();
 		createFirstMainField();
 		createBackground();
-		window.setVisible(true);
 	}
 	
 
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(200,150);
+		window.setSize(500,500);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		window.getContentPane().setBackground(Color.white);
 		window.addWindowListener(this);
 		window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName());
+		window.setVisible(true);
 	}
 	
 	/**
@@ -56,11 +55,11 @@ public class DiceUI implements ActionListener, WindowListener {
 	 */
 	public void createBackground() {
 		bgpanel[1] = new JPanel();
-		bgpanel[1].setBounds(50,50,200,150);
+		bgpanel[1].setBounds(50,50,200,200);
 
 		
 		bgLabel[1] = new JLabel();
-		bgLabel[1].setBounds(50,50,200,150);
+		bgLabel[1].setBounds(50,50,200,200);
 		
 		JButton button = new JButton("Show numbers!");
 		button.addActionListener(this);
@@ -94,35 +93,35 @@ public class DiceUI implements ActionListener, WindowListener {
 	 */
 	public void addpicture1(int n_dice) {
 		bgLabel[1] = new JLabel();
-		bgLabel[1].setBounds(50,50,200,150);
+		bgLabel[1].setBounds(50,50,200,200);
 		if(n_dice == 1) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("eins.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}else if(n_dice == 2){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("zwei.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}else if(n_dice == 3){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("drei.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}else if(n_dice == 4){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("vier.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}else if(n_dice == 5){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("fuenf.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}else if(n_dice == 6){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("sechs.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[1].setIcon(bgIcon);
 			bgLabel[1].setLocation(100, 100);
 		}
@@ -136,35 +135,35 @@ public class DiceUI implements ActionListener, WindowListener {
 	 */
 	public void addpicture2(int n_dice) {
 		bgLabel[2] = new JLabel();
-		bgLabel[2].setBounds(50,50,200,150);
+		bgLabel[2].setBounds(50,50,200,200);
 		if(n_dice == 1) {
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("eins.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}else if(n_dice == 2){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("zwei.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}else if(n_dice == 3){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("drei.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}else if(n_dice == 4){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("vier.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}else if(n_dice == 5){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("fuenf.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}else if(n_dice == 6){
 			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("sechs.png"));
-			bgIcon.setImage(bgIcon.getImage().getScaledInstance(100,50,Image.SCALE_DEFAULT));
+			bgIcon.setImage(bgIcon.getImage());
 			bgLabel[2].setIcon(bgIcon);
 			bgLabel[2].setLocation(300, 100);
 		}
@@ -173,7 +172,7 @@ public class DiceUI implements ActionListener, WindowListener {
 		bgpanel[1].add(bgLabel[2]);
 		bgpanel[1].add(button);
 		window.add(bgpanel[1]);
-		window.setSize(300,150);
+		window.setSize(500,500);
 		window.setVisible(true);
 	}
 	
