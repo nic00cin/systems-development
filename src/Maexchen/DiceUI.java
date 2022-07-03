@@ -229,12 +229,16 @@ public class DiceUI implements ActionListener, WindowListener {
 		} else {
 			window.dispose();
 			showed = false;
-			if (number != 21) {
+			if (PlayerInfoUI.highest_number == 66) {
+				window.dispose();
+				PlayerInfoUI.Players[PlayerInfoUI.player_order].setCalled(66);
+				Trust trust_ui = new Trust();
+			} else if (number != 21) {
 				NumberCall n_call = new NumberCall();
 			} else {
 				PlayerInfoUI.Players[PlayerInfoUI.player_order].increasePoints();
 				JFrame jFrame = new JFrame();
-				JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " said the truth! So you win a point!");
+				JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " got a Mäxchen! Congratulations, you win a point!");
 				window.dispose();
 				DiceUI dice_ui = new DiceUI();
 			}

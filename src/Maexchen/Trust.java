@@ -155,7 +155,7 @@ public class Trust implements ActionListener, WindowListener {
 					PlayerInfoUI.player_order += 1;
 				}
 			}
-
+			PlayerInfoUI.highest_number = 0;
 			window.dispose();
 			DiceUI dice_ui = new DiceUI();
 		}
