@@ -18,8 +18,7 @@ It is robustly build, but still remains flexible due to its MVC Architecture.
 
 ## Documentation
 
-<a href="doc/index.html">Javadoc</a>
-
+<a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/nic00cin/systems-development/master/doc/Maexchen/package-summary.html">Javadoc</a>
 
 ## Authors
 
