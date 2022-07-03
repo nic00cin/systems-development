@@ -1,7 +1,5 @@
 package Maexchen;
 
-import java.lang.reflect.Array;
-
 public class CheckerMaexchen {
 	public static int Values[] = new int[21];
 	public static int index;
@@ -77,7 +75,7 @@ public class CheckerMaexchen {
 	 */
 	public static boolean NumberisIn(int number) {
 		isIn = false;
-		for(int i = 0; i<21; i++) {
+		for(int i = 0; i<20; i++) {
 			if(number == Values[i]) {
 				isIn = true;
 			}
