@@ -49,7 +49,7 @@ public class DiceUI implements ActionListener, WindowListener {
 		window.setLayout(new BorderLayout());
 		window.add(titlePanel, BorderLayout.NORTH);
 		window.add(imagePanel, BorderLayout.CENTER);
-		window.add(inputPanel, BorderLayout.CENTER);
+		window.add(inputPanel, BorderLayout.SOUTH);
 		window.addWindowListener(this);
 		window.setTitle("Mäxchen");
 		window.setVisible(true);
@@ -61,7 +61,8 @@ public class DiceUI implements ActionListener, WindowListener {
 	public void createTitlePanel() {
 		titlePanel = new JPanel();
 		titlePanel.setLayout(new BorderLayout());
-		titleLabel = new JLabel(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName());
+		String name = PlayerInfoUI.Players[PlayerInfoUI.player_order].getName();
+		titleLabel = new JLabel("It's your turn " + name + ". Only you are allowed to see your dice result!");
 
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 	}
@@ -83,21 +84,14 @@ public class DiceUI implements ActionListener, WindowListener {
 	 * Create panel for main image view
 	 */
 	public void createImagePanel() {
-		imagePanel = new JPanel() {
-			ImageIcon bgIcon = new ImageIcon(getClass().getClassLoader().getResource("becher.jpg"));
-			Image bgImage = bgIcon.getImage();
-
-			@Override
-			protected void paintComponent(Graphics g) {
-				super.paintComponent(g);
-				g.drawImage(bgImage, 0, 0, getWidth(), getHeight(), this);
-			}
-
-			@Override
-			public Dimension getPreferredSize() {
-				return new Dimension(390, 390);
-			}
-		};
+		imagePanel = new JPanel();
+		JLabel imageLabel = new JLabel();
+		
+		ImageIcon dice = new ImageIcon(getClass().getClassLoader().getResource("roll-the-dice.gif"));
+		dice.getImage();
+		imageLabel.setIcon(dice);
+		
+		imagePanel.add(imageLabel);
 	}
 
 	/**
