@@ -18,7 +18,7 @@ It is robustly build, but still remains flexible due to its MVC Architecture.
 
 ## Documentation
 
-<a href="https://htmlpreview.github.io/?https://github.com/nic00cin/systems-development/blob/master/doc/allclasses-index.html">Javadoc</a>
+<a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/nic00cin/systems-development/master/doc/Maexchen/package-summary.html">Javadoc</a>
 
 ## Authors
 
