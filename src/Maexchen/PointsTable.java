@@ -16,16 +16,16 @@ public class PointsTable {
 	public JPanel winnerPanel;
 	public JLabel bgLabel[] = new JLabel[UI.input_players];
 	public JLabel winnerLabel;
-	public static int highestpoints = 0;
+	public static int highestpoints = -100000;
 	public static int highestp_index = 0;
-	
-	public PointsTable(){
+
+	public PointsTable() {
 		createTitlePanel();
 		createImagePanel();
 		createWinnerPanel();
 		createFirstMainField();
 	}
-	
+
 	/**
 	 * shows the name of the winner in the title
 	 */
@@ -40,21 +40,22 @@ public class PointsTable {
 		window.setTitle("Mäxchen");
 		window.setVisible(true);
 	}
-	
+
 	/**
 	 * shows all players and their points in the user interface
 	 */
 	public void createTitlePanel() {
 		titlePanel = new JPanel();
-		titlePanel.setBounds(50,50,200,150);
+		titlePanel.setBounds(50, 50, 200, 150);
 
-		for(int i = 0; i < UI.input_players; i++) {
-			bgLabel[i] = new JLabel(PlayerInfoUI.Players[i].getName() + " has " + PlayerInfoUI.Players[i].getPoints() + " Points " );
-			bgLabel[i].setBounds(50,50,200,150);
+		for (int i = 0; i < UI.input_players; i++) {
+			bgLabel[i] = new JLabel(
+					PlayerInfoUI.Players[i].getName() + " has " + PlayerInfoUI.Players[i].getPoints() + " Points ");
+			bgLabel[i].setBounds(50, 50, 200, 150);
 			titlePanel.add(bgLabel[i]);
 		}
 	}
-	
+
 	/**
 	 * This method creates the trust user interface
 	 */
@@ -62,10 +63,10 @@ public class PointsTable {
 		winnerPanel = new JPanel();
 		String winner = "Congratulations " + PlayerInfoUI.Players[getWinner()].getName() + ", you are the Winner!";
 		winnerLabel = new JLabel(winner);
-		
+
 		winnerPanel.add(winnerLabel);
 	}
-	
+
 	/**
 	 * Create panel for main image view
 	 */
@@ -80,25 +81,34 @@ public class PointsTable {
 
 		imagePanel.add(imageLabel);
 	}
-	
+
 	/**
 	 * Checks which player has the most points
+	 * 
 	 * @return the winner
 	 */
 	public static int getWinner() {
-		
-		for(int i = 0; i < UI.input_players ; i++) {
-				if(PlayerInfoUI.Players[i].getPoints() == highestpoints) {
-					if(PlayerInfoUI.Players[i].getAge() < PlayerInfoUI.Players[highestp_index].getAge()) {
-						highestp_index = i;
-					}
-				}else if(PlayerInfoUI.Players[i].getPoints() > highestpoints) {
-					highestpoints =  PlayerInfoUI.Players[i].getPoints();
+
+		for (int i = 0; i < UI.input_players; i++) {
+			
+			if (PlayerInfoUI.Players[i].getPoints() > highestpoints) {
+				highestpoints = PlayerInfoUI.Players[i].getPoints();
+				highestp_index = i;
+			} else if (PlayerInfoUI.Players[i].getPoints() == highestpoints) {
+				if (PlayerInfoUI.Players[i].getAge() < PlayerInfoUI.Players[highestp_index].getAge()) {
 					highestp_index = i;
 				}
 			}
-		return highestp_index;
+			/*if (PlayerInfoUI.Players[i].getPoints() == highestpoints) {
+				if (PlayerInfoUI.Players[i].getAge() < PlayerInfoUI.Players[highestp_index].getAge()) {
+					highestp_index = i;
+				}
+			} else if (PlayerInfoUI.Players[i].getPoints() > highestpoints) {
+				highestpoints = PlayerInfoUI.Players[i].getPoints();
+				highestp_index = i;
+			}*/
 		}
+		System.out.println(highestp_index);
+		return highestp_index;
 	}
-	
-
+}

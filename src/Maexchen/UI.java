@@ -163,6 +163,7 @@ public class UI implements ActionListener {
 		}
 	}
 
+	// This class was implemented from "https://stackoverflow.com/questions/23882640/how-to-set-the-title-of-a-jcombobox-when-nothing-is-selected"
 	class MyComboBoxRenderer extends JLabel implements ListCellRenderer {
 		private String _title;
 
