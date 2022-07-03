@@ -66,7 +66,7 @@ public class DiceUI implements ActionListener, WindowListener {
 
 		titlePanel.add(titleLabel, BorderLayout.CENTER);
 	}
-	
+
 	/**
 	 * Create panel for the player label and the show numbers button
 	 */
@@ -79,18 +79,18 @@ public class DiceUI implements ActionListener, WindowListener {
 
 		inputPanel.add(button);
 	}
-	
+
 	/**
 	 * Create panel for main image view
 	 */
 	public void createImagePanel() {
 		imagePanel = new JPanel();
 		JLabel imageLabel = new JLabel();
-		
+
 		ImageIcon dice = new ImageIcon(getClass().getClassLoader().getResource("roll-the-dice.gif"));
 		dice.getImage();
 		imageLabel.setIcon(dice);
-		
+
 		imagePanel.add(imageLabel);
 	}
 
@@ -212,28 +212,31 @@ public class DiceUI implements ActionListener, WindowListener {
 				addpicture1(number2);
 				addpicture2(number1);
 			}
-			
+
 			JButton button = new JButton("Continue");
 			button.addActionListener(this);
 			imagePanel.add(firstDiceLabel);
 			imagePanel.add(secondDiceLabel);
 			inputPanel.add(button);
-			
+
 			window.add(imagePanel, BorderLayout.CENTER);
 			window.add(inputPanel, BorderLayout.SOUTH);
 			window.setSize(500, 500);
 			window.setVisible(true);
-			
+
 			PlayerInfoUI.Players[PlayerInfoUI.player_order].setRolled(number);
 			showed = true;
 		} else {
 			window.dispose();
 			showed = false;
-			if (PlayerInfoUI.highest_number != 21) {
+			if (number != 21) {
 				NumberCall n_call = new NumberCall();
 			} else {
-				PlayerInfoUI.Players[PlayerInfoUI.player_order].setCalled(PlayerInfoUI.highest_number);
-				Trust trust_ui = new Trust();
+				PlayerInfoUI.Players[PlayerInfoUI.player_order].increasePoints();
+				JFrame jFrame = new JFrame();
+				JOptionPane.showMessageDialog(jFrame, PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " said the truth! So you win a point!");
+				window.dispose();
+				DiceUI dice_ui = new DiceUI();
 			}
 		}
 	}

@@ -1,14 +1,10 @@
 package Maexchen;
 
-import java.awt.Color;
 import java.awt.*;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,36 +20,58 @@ public class Trust implements ActionListener, WindowListener {
 	}
 
 	public JFrame window;
-	public JPanel bgpanel[] = new JPanel[5];
+	public JPanel titlePanel;
+	public JPanel imagePanel;
+	public JPanel inputPanel;
 	public JLabel bgLabel[] = new JLabel[5];
+	public JLabel titleLabel;
 	public JTextField number_called;
 	public int input_number;
 
 	public Trust() {
-		createFirstMainField();
-		createBackground();
-		window.setVisible(true);
+		createTitlePanel();
+		createImagePanel();
+		createInputPanel();
+		createMainField();
 	}
 
-	public void createFirstMainField() {
+	public void createMainField() {
 		window = new JFrame();
-		window.setSize(500, 500);
 		window.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		window.getContentPane().setBackground(Color.white);
+		window.setSize(500, 500);
+		window.setLayout(new BorderLayout());
+		window.add(titlePanel, BorderLayout.NORTH);
+		window.add(imagePanel, BorderLayout.CENTER);
+		window.add(inputPanel, BorderLayout.SOUTH);
 		window.addWindowListener(this);
+		window.setTitle("Mäxchen");
+		window.setVisible(true);
+	}
+	
+	/**
+	 * Create panel for the page title and game manual
+	 */
+	public void createTitlePanel() {
+		titlePanel = new JPanel();
+		titlePanel.setLayout(new BorderLayout());
+		String name;
+		String otherName = PlayerInfoUI.Players[PlayerInfoUI.player_order].getName();
 		if (PlayerInfoUI.player_order + 1 >= UI.input_players) {
-			window.setTitle(PlayerInfoUI.Players[0].getName());
+			name = PlayerInfoUI.Players[0].getName();
 		} else {
-			window.setTitle(PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].getName());
+			name = PlayerInfoUI.Players[PlayerInfoUI.player_order + 1].getName();
 		}
+		titleLabel = new JLabel("It's your turn " + name + ". Do you believe what " + otherName + " said?");
+
+		titlePanel.add(titleLabel, BorderLayout.CENTER);
 	}
 
 	/**
 	 * This method creates the trust user interface
 	 */
-	public void createBackground() {
-		bgpanel[1] = new JPanel();
-		bgpanel[1].setBounds(50, 50, 300, 250);
+	public void createInputPanel() {
+		inputPanel = new JPanel();
+		inputPanel.setBounds(50, 50, 300, 250);
 
 		bgLabel[1] = new JLabel(PlayerInfoUI.Players[PlayerInfoUI.player_order].getName() + " rolled: "
 				+ PlayerInfoUI.Players[PlayerInfoUI.player_order].getCalled());
@@ -67,10 +85,24 @@ public class Trust implements ActionListener, WindowListener {
 		lie.setActionCommand(Actions.LIE.name());
 		lie.addActionListener(this);
 
-		bgpanel[1].add(bgLabel[1]);
-		bgpanel[1].add(trust);
-		bgpanel[1].add(lie);
-		window.add(bgpanel[1]);
+		inputPanel.add(bgLabel[1]);
+		inputPanel.add(trust);
+		inputPanel.add(lie);
+	}
+	
+	/**
+	 * Create panel for main image view
+	 */
+	public void createImagePanel() {
+		imagePanel = new JPanel();
+		imagePanel.setBackground(Color.WHITE);
+		JLabel imageLabel = new JLabel();
+
+		ImageIcon dice = new ImageIcon(getClass().getClassLoader().getResource("question.png"));
+		dice.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+		imageLabel.setIcon(dice);
+
+		imagePanel.add(imageLabel);
 	}
 
 	/**
@@ -131,7 +163,6 @@ public class Trust implements ActionListener, WindowListener {
 
 	@Override
 	public void windowOpened(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 	/**
@@ -139,7 +170,6 @@ public class Trust implements ActionListener, WindowListener {
 	 */
 	@Override
 	public void windowClosing(WindowEvent e) {
-		// TODO Auto-generated method stub
 		int antwort = JOptionPane.showConfirmDialog(window, "Do you really want to exit the game?", "Exit",
 				JOptionPane.YES_NO_OPTION);
 		if (antwort == JOptionPane.YES_OPTION) {
@@ -150,31 +180,26 @@ public class Trust implements ActionListener, WindowListener {
 
 	@Override
 	public void windowClosed(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void windowIconified(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void windowDeiconified(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void windowActivated(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void windowDeactivated(WindowEvent e) {
-		// TODO Auto-generated method stub
 
 	}
 }
