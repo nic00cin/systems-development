@@ -1,34 +1,29 @@
 package Maexchen;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class PointsTable {
 	public JFrame window;
-	public JPanel bgpanel[] = new JPanel[5];
+	public JPanel titlePanel;
+	public JPanel imagePanel;
+	public JPanel winnerPanel;
 	public JLabel bgLabel[] = new JLabel[UI.input_players];
+	public JLabel winnerLabel;
 	public static int highestpoints = 0;
 	public static int highestp_index = 0;
 	
 	public PointsTable(){
-		// TODO Auto-generated method stub
+		createTitlePanel();
+		createImagePanel();
+		createWinnerPanel();
 		createFirstMainField();
-		createBackground();
-		window.setVisible(true);
 	}
 	
 	/**
@@ -36,28 +31,54 @@ public class PointsTable {
 	 */
 	public void createFirstMainField() {
 		window = new JFrame();
-		window.setSize(500,500);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.getContentPane().setBackground(Color.white);
-		window.setTitle("The Winner is " +PlayerInfoUI.Players[getWinner()].getName());
+		window.setSize(500, 500);
+		window.setLayout(new BorderLayout());
+		window.add(titlePanel, BorderLayout.NORTH);
+		window.add(imagePanel, BorderLayout.CENTER);
+		window.add(winnerPanel, BorderLayout.SOUTH);
+		window.setTitle("Mäxchen");
+		window.setVisible(true);
 	}
 	
 	/**
 	 * shows all players and their points in the user interface
 	 */
-	public void createBackground() {
-		bgpanel[1] = new JPanel();
-		bgpanel[1].setBounds(50,50,200,150);
+	public void createTitlePanel() {
+		titlePanel = new JPanel();
+		titlePanel.setBounds(50,50,200,150);
 
 		for(int i = 0; i < UI.input_players; i++) {
 			bgLabel[i] = new JLabel(PlayerInfoUI.Players[i].getName() + " has " + PlayerInfoUI.Players[i].getPoints() + " Points " );
 			bgLabel[i].setBounds(50,50,200,150);
-			bgpanel[1].add(bgLabel[i]);
+			titlePanel.add(bgLabel[i]);
 		}
+	}
+	
+	/**
+	 * This method creates the trust user interface
+	 */
+	public void createWinnerPanel() {
+		winnerPanel = new JPanel();
+		String winner = "Congratulations " + PlayerInfoUI.Players[getWinner()].getName() + ", you are the Winner!";
+		winnerLabel = new JLabel(winner);
 		
-		window.add(bgpanel[1]);
-		
-		
+		winnerPanel.add(winnerLabel);
+	}
+	
+	/**
+	 * Create panel for main image view
+	 */
+	public void createImagePanel() {
+		imagePanel = new JPanel();
+		imagePanel.setBackground(Color.WHITE);
+		JLabel imageLabel = new JLabel();
+
+		ImageIcon dice = new ImageIcon(getClass().getClassLoader().getResource("trophy.gif"));
+		dice.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT);
+		imageLabel.setIcon(dice);
+
+		imagePanel.add(imageLabel);
 	}
 	
 	/**
